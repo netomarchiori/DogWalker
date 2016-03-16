@@ -20,7 +20,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2dC-9y-uFB">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <connections>
-                                    <outlet property="delegate" destination="8bC-Xf-vdC" id="erH-29-L6Y"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="fNj-B2-t6w"/>
                                 </connections>
                             </mapView>
                         </subviews>
