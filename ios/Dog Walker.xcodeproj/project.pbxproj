@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0386D4851C9913C00052B643 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 0386D4841C9913C00052B643 /* users.json */; };
+		0386D4871C99159B0052B643 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386D4861C99159B0052B643 /* User.swift */; };
+		0386D48D1C991F8D0052B643 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386D48C1C991F8D0052B643 /* UserAnnotation.swift */; };
 		AC3BF86C1C98C78F00CB6983 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF86B1C98C78F00CB6983 /* AppDelegate.swift */; };
 		AC3BF8711C98C78F00CB6983 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC3BF86F1C98C78F00CB6983 /* Main.storyboard */; };
 		AC3BF8731C98C78F00CB6983 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC3BF8721C98C78F00CB6983 /* Assets.xcassets */; };
@@ -46,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0386D4841C9913C00052B643 /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = users.json; path = ../../../../../Desktop/users.json; sourceTree = "<group>"; };
+		0386D4861C99159B0052B643 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0386D48C1C991F8D0052B643 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		AC3BF8681C98C78F00CB6983 /* Dog Walker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dog Walker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3BF86B1C98C78F00CB6983 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC3BF8701C98C78F00CB6983 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 				AC3BF87F1C98C78F00CB6983 /* Dog WalkerTests */,
 				AC3BF88A1C98C78F00CB6983 /* Dog WalkerUITests */,
 				AC3BF8691C98C78F00CB6983 /* Products */,
+				0386D4841C9913C00052B643 /* users.json */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,10 +144,12 @@
 				AC85257E1C98DF05002C8E79 /* HistoryTableViewController.swift */,
 				AC8525821C98E1F1002C8E79 /* DetailWaitingViewController.swift */,
 				AC8525801C98E0BB002C8E79 /* DetailViewController.swift */,
+				0386D4861C99159B0052B643 /* User.swift */,
 				AC3BF86F1C98C78F00CB6983 /* Main.storyboard */,
 				AC3BF8721C98C78F00CB6983 /* Assets.xcassets */,
 				AC3BF8741C98C78F00CB6983 /* LaunchScreen.storyboard */,
 				AC3BF8771C98C78F00CB6983 /* Info.plist */,
+				0386D48C1C991F8D0052B643 /* UserAnnotation.swift */,
 			);
 			path = "Dog Walker";
 			sourceTree = "<group>";
@@ -285,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0386D4851C9913C00052B643 /* users.json in Resources */,
 				AC3BF8761C98C78F00CB6983 /* LaunchScreen.storyboard in Resources */,
 				AC3BF8731C98C78F00CB6983 /* Assets.xcassets in Resources */,
 				AC3BF8711C98C78F00CB6983 /* Main.storyboard in Resources */,
@@ -315,7 +325,9 @@
 				AC3BF89E1C98D45B00CB6983 /* LoginViewController.swift in Sources */,
 				AC8525831C98E1F1002C8E79 /* DetailWaitingViewController.swift in Sources */,
 				AC3BF86C1C98C78F00CB6983 /* AppDelegate.swift in Sources */,
+				0386D48D1C991F8D0052B643 /* UserAnnotation.swift in Sources */,
 				AC3BF89C1C98CC3D00CB6983 /* SchedulingViewController.swift in Sources */,
+				0386D4871C99159B0052B643 /* User.swift in Sources */,
 				AC8525811C98E0BB002C8E79 /* DetailViewController.swift in Sources */,
 				AC3BF89A1C98CB7C00CB6983 /* MapaViewController.swift in Sources */,
 				AC85257F1C98DF05002C8E79 /* HistoryTableViewController.swift in Sources */,
