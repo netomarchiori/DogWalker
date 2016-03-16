@@ -17,6 +17,9 @@
 		AC3BF89C1C98CC3D00CB6983 /* SchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF89B1C98CC3D00CB6983 /* SchedulingViewController.swift */; };
 		AC3BF89E1C98D45B00CB6983 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF89D1C98D45B00CB6983 /* LoginViewController.swift */; };
 		AC3BF8A01C98D5D900CB6983 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BF89F1C98D5D900CB6983 /* MapKit.framework */; };
+		AC85257F1C98DF05002C8E79 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC85257E1C98DF05002C8E79 /* HistoryTableViewController.swift */; };
+		AC8525811C98E0BB002C8E79 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8525801C98E0BB002C8E79 /* DetailViewController.swift */; };
+		AC8525831C98E1F1002C8E79 /* DetailWaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8525821C98E1F1002C8E79 /* DetailWaitingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		AC3BF89B1C98CC3D00CB6983 /* SchedulingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulingViewController.swift; path = ../SchedulingViewController.swift; sourceTree = "<group>"; };
 		AC3BF89D1C98D45B00CB6983 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AC3BF89F1C98D5D900CB6983 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		AC85257E1C98DF05002C8E79 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		AC8525801C98E0BB002C8E79 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		AC8525821C98E1F1002C8E79 /* DetailWaitingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWaitingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,9 @@
 				AC3BF8991C98CB7C00CB6983 /* MapaViewController.swift */,
 				AC3BF89B1C98CC3D00CB6983 /* SchedulingViewController.swift */,
 				AC3BF89D1C98D45B00CB6983 /* LoginViewController.swift */,
+				AC85257E1C98DF05002C8E79 /* HistoryTableViewController.swift */,
+				AC8525821C98E1F1002C8E79 /* DetailWaitingViewController.swift */,
+				AC8525801C98E0BB002C8E79 /* DetailViewController.swift */,
 				AC3BF86F1C98C78F00CB6983 /* Main.storyboard */,
 				AC3BF8721C98C78F00CB6983 /* Assets.xcassets */,
 				AC3BF8741C98C78F00CB6983 /* LaunchScreen.storyboard */,
@@ -272,9 +281,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC3BF89E1C98D45B00CB6983 /* LoginViewController.swift in Sources */,
+				AC8525831C98E1F1002C8E79 /* DetailWaitingViewController.swift in Sources */,
 				AC3BF86C1C98C78F00CB6983 /* AppDelegate.swift in Sources */,
 				AC3BF89C1C98CC3D00CB6983 /* SchedulingViewController.swift in Sources */,
+				AC8525811C98E0BB002C8E79 /* DetailViewController.swift in Sources */,
 				AC3BF89A1C98CB7C00CB6983 /* MapaViewController.swift in Sources */,
+				AC85257F1C98DF05002C8E79 /* HistoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +511,7 @@
 				AC3BF8921C98C78F00CB6983 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AC3BF8931C98C78F00CB6983 /* Build configuration list for PBXNativeTarget "Dog WalkerTests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +520,7 @@
 				AC3BF8951C98C78F00CB6983 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AC3BF8961C98C78F00CB6983 /* Build configuration list for PBXNativeTarget "Dog WalkerUITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +529,7 @@
 				AC3BF8981C98C78F00CB6983 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

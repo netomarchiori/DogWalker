@@ -1,5 +1,5 @@
 //
-//  MapaViewController.swift
+//  DetailViewController.swift
 //  Dog Walker
 //
 //  Created by Usuário Convidado on 15/03/16.
@@ -7,22 +7,13 @@
 //
 
 import UIKit
-import MapKit
 
-class MapaViewController: UIViewController, MKMapViewDelegate{
+class DetailViewController: UIViewController {
 
-    @IBOutlet weak var mapView: MKMapView!
-    
-    let locationManager: CLLocationManager = CLLocationManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
-        
-        self.locationManager.requestWhenInUseAuthorization()
-        self.mapView.showsUserLocation = true
-        
-    
     }
 
     override func didReceiveMemoryWarning() {
