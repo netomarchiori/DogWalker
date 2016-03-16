@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Firebase
 
-class MapaViewController: UIViewController, MKMapViewDelegate{
+class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var btnDebug: UIButton!
@@ -25,18 +25,16 @@ class MapaViewController: UIViewController, MKMapViewDelegate{
         
         self.locationManager.requestWhenInUseAuthorization()
         self.mapView.showsUserLocation = true
+        self.locationManager.delegate = self
+        self.locationManager.startUpdatingLocation()
+        
+        let location = self.locationManager.location
+        let latitude: Double = (location?.coordinate.latitude)!
+        let longitude: Double = (location?.coordinate.longitude)!
         
         // Define minha localizacao e centraliza o mapa nela
-        let baseLocation:CLLocationCoordinate2D  = CLLocationCoordinate2DMake(-23.573804, -46.623441)
-        self.mapView.region = MKCoordinateRegionMakeWithDistance(baseLocation, 3600, 3600)
-
-        /*
-        let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/users")
-        let usersRef = ref.childByAppendingPath("users")
-        
-        var users = ["alanisawesome": alanisawesome, "gracehop": gracehop]
-        usersRef.setValue(users)
-        */
+        let baseLocation:CLLocationCoordinate2D  = CLLocationCoordinate2DMake(latitude, longitude)
+        self.mapView.region = MKCoordinateRegionMakeWithDistance(baseLocation, 2400, 2400)
 
         // Get a reference to our posts
         
@@ -44,7 +42,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate{
         self.ref.observeEventType(.Value, withBlock: { snapshot in
             //print(snapshot.value)
 
-            // chama func para carregar users no mapa
+            // Adiciona users no mapa
             self.loadUsersOnMapView(snapshot.value!)
             
             // let title = snapshot.value.objectForKey("full_name") as? String
@@ -55,21 +53,6 @@ class MapaViewController: UIViewController, MKMapViewDelegate{
         })
 
     }
-
-    // teste para puxar localizacao atual e centralizar no mapa: 
-    // http://stackoverflow.com/questions/25449469/swift-show-current-location-and-update-location-in-a-mkmapview
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]!) {
-        let location = locations.last as! CLLocation
-        
-        print(location.coordinate.latitude)
-        print(location.coordinate.longitude)
-        
-        let center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        self.mapView.setRegion(region, animated: true)
-    }
-    
     
     override func viewDidDisappear(animated: Bool) {
         
@@ -125,8 +108,12 @@ class MapaViewController: UIViewController, MKMapViewDelegate{
             if (anView == nil) {
                 //criar a view como subclasse de MKAnnotationView
                 anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                //trocar a imagem pelo logo do metro
-                anView!.image = UIImage(named:"bluePin")
+                //trocar a imagem pelo logo dogWalker ou usuario normal (que contrata um passeio)
+                
+                let userAnnotation: UserAnnotation = anView!.annotation! as! UserAnnotation
+                //anView!.image = UIImage(named:"bluePin")
+                print("Foto: \((userAnnotation.user?.picture)!)")
+                anView!.image = loadUIImage((userAnnotation.user?.picture)!)
                 //permitir que mostre o "balão" com informações da marcação
                 anView!.canShowCallout = true
                 //adiciona um botão do lado direito do balão
@@ -135,5 +122,11 @@ class MapaViewController: UIViewController, MKMapViewDelegate{
             return anView
         }
         return nil
+    }
+
+    func loadUIImage(imagem: String) -> UIImage {
+        let url = NSURL(string:imagem)
+        let data: NSData = NSData(contentsOfURL:url!)!
+        return UIImage(data:data)!
     }
 }
