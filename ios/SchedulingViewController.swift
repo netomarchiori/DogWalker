@@ -10,17 +10,20 @@ import UIKit
 
 class SchedulingViewController: UIViewController {
 
+    var user:User = User()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        print("Opa, chegou nos detalhes... \(user.uuid) - \(user.name)")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

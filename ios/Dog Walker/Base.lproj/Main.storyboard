@@ -47,12 +47,12 @@
                     <connections>
                         <outlet property="btnDebug" destination="IJM-Op-cK4" id="Bkc-jt-wRh"/>
                         <outlet property="mapView" destination="2dC-9y-uFB" id="PK7-Hb-4zg"/>
-                        <segue destination="WPO-Nq-j47" kind="show" id="r5U-E6-di4"/>
+                        <segue destination="WPO-Nq-j47" kind="show" identifier="segueAgendamento" id="r5U-E6-di4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2114" y="452"/>
+            <point key="canvasLocation" x="2118" y="452"/>
         </scene>
         <!--Scheduling View Controller-->
         <scene sceneID="Tb9-3C-C4f">
@@ -427,8 +427,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mlB-S9-2UA"/>
         <segue reference="r5U-E6-di4"/>
+        <segue reference="mlB-S9-2UA"/>
         <segue reference="WuY-Gf-q1b"/>
     </inferredMetricsTieBreakers>
 </document>

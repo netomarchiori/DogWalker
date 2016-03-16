@@ -16,7 +16,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     @IBOutlet weak var btnDebug: UIButton!
     
     let locationManager: CLLocationManager = CLLocationManager()
-    
+
     let ref = Firebase(url:"https://dog-walker-app.firebaseio.com")
     
     override func viewDidLoad() {
@@ -79,7 +79,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         var user:User = User()
         user.uuid = "XPTO"
         
-        let userPoint:UserAnnotation! = UserAnnotation(coordinate: center, title: "Eu", subtitle: "Sua localização atual", image: "userLogo", userUuid: user.uuid)
+        let userPoint:UserAnnotation! = UserAnnotation(coordinate: center, title: "Eu", subtitle: "Sua localização atual", image: "bluePin", user: user)
 
         self.mapView.addAnnotation(userPoint)
         
@@ -90,24 +90,38 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl){
         if (view.annotation is UserAnnotation) {
             print("Vamos agendar o passeio, blz...")
+            
+            let userAnnotation: UserAnnotation = view.annotation! as! UserAnnotation
+            performSegueWithIdentifier("segueAgendamento", sender: userAnnotation)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "segueAgendamento") {
+            if let schedulingViewController = segue.destinationViewController as? SchedulingViewController {
+
+                let userAnnotation: UserAnnotation = sender! as! UserAnnotation
+
+                schedulingViewController.user = userAnnotation.user!
+            }
         }
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         print("viewForAnnotation disparado")
         if annotation is UserAnnotation {
-            print("porra!")
             let reuseId = "reuseUserAnnotation"
             var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
             if anView == nil {
                 anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                anView!.image = UIImage(named: "userLogo")
+                let userAnnotation: UserAnnotation = anView!.annotation! as! UserAnnotation
+                let imgName:String = getImageNameByStatus(userAnnotation.user!.status)
+                anView!.image = UIImage(named: imgName)
                 anView!.canShowCallout = true
                 anView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure)
             }
             return anView
         }
-        print("putz!")
         return nil
     }
 
@@ -133,31 +147,28 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 let lat: Double! = Double(locationArr[0])
                 let long: Double! = Double(locationArr[1])
                 
-                //print(lat!)
-                //print(long!)
-                //print(u.picture)
-
-                let imgName:String = getImageNameByProfile(u.profile)
+                let imgName:String = getImageNameByStatus(u.status)
                 //print(imgName)
 
-                let userAnnotation: UserAnnotation = UserAnnotation(coordinate: CLLocationCoordinate2DMake(lat, long), title: u.name, subtitle: u.profile + " - " +  u.status, image: imgName, userUuid: u.uuid)
+                let userAnnotation: UserAnnotation = UserAnnotation(coordinate: CLLocationCoordinate2DMake(lat, long), title: u.name, subtitle: u.profile + " - " +  u.status, image: imgName, user: u)
                 
                 self.mapView.addAnnotation(userAnnotation)
             }
         }
     }
     
-    func getImageNameByProfile(profile: String) -> String {
+    func getImageNameByStatus(status: String) -> String {
         var imgName:String = ""
 
-        switch profile {
-        case "customer":
+        switch status {
+        case "available":
             imgName = "bluePin"
-            print("Usuario comum. Imagem: \(imgName)")
-        case "dogWalker":
-            imgName = "userLogo"
-            print("Usuario DogWalker. Imagem: \(imgName)")
+            print("Passeador disponivel. Imagem: \(imgName)")
+        case "busy":
+            imgName =  "redPin"//"dogWalker"
+            print("Passeador em passeio. Imagem: \(imgName)")
         default:
+            imgName = "userLogo"
             print("Usuario com o perfil nao tratado.")
         }
 

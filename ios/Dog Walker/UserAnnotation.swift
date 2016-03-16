@@ -15,13 +15,13 @@ class UserAnnotation: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     var image: String?
-    var userUuid: String?
+    var user: User?
 
-    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, image: String, userUuid: String) {
+    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, image: String, user: User) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
         self.image = image
-        self.userUuid = userUuid
+        self.user = user
     }
 }
