@@ -145,11 +145,11 @@
 				AC8525821C98E1F1002C8E79 /* DetailWaitingViewController.swift */,
 				AC8525801C98E0BB002C8E79 /* DetailViewController.swift */,
 				0386D4861C99159B0052B643 /* User.swift */,
+				0386D48C1C991F8D0052B643 /* UserAnnotation.swift */,
 				AC3BF86F1C98C78F00CB6983 /* Main.storyboard */,
 				AC3BF8721C98C78F00CB6983 /* Assets.xcassets */,
 				AC3BF8741C98C78F00CB6983 /* LaunchScreen.storyboard */,
 				AC3BF8771C98C78F00CB6983 /* Info.plist */,
-				0386D48C1C991F8D0052B643 /* UserAnnotation.swift */,
 			);
 			path = "Dog Walker";
 			sourceTree = "<group>";

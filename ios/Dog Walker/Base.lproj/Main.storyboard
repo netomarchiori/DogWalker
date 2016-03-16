@@ -19,6 +19,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2dC-9y-uFB">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <connections>
+                                    <outlet property="delegate" destination="8bC-Xf-vdC" id="erH-29-L6Y"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -43,7 +46,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnDebug" destination="IJM-Op-cK4" id="Bkc-jt-wRh"/>
-                        <outlet property="mapView" destination="2dC-9y-uFB" id="xFZ-Xn-orG"/>
+                        <outlet property="mapView" destination="2dC-9y-uFB" id="PK7-Hb-4zg"/>
                         <segue destination="WPO-Nq-j47" kind="show" id="r5U-E6-di4"/>
                     </connections>
                 </viewController>
