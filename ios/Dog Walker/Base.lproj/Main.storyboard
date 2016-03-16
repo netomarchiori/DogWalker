@@ -42,6 +42,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnDebug" destination="IJM-Op-cK4" id="Bkc-jt-wRh"/>
                         <outlet property="mapView" destination="2dC-9y-uFB" id="xFZ-Xn-orG"/>
                         <segue destination="WPO-Nq-j47" kind="show" id="r5U-E6-di4"/>
                     </connections>
