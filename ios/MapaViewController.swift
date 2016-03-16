@@ -17,7 +17,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate{
     
     let locationManager: CLLocationManager = CLLocationManager()
     
-    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/users")
+    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +27,8 @@ class MapaViewController: UIViewController, MKMapViewDelegate{
         self.mapView.showsUserLocation = true
         
         // Define minha localizacao e centraliza o mapa nela
-        let fiapLocation:CLLocationCoordinate2D  = CLLocationCoordinate2DMake(-23.550303, -46.634184)
-        self.mapView.region = MKCoordinateRegionMakeWithDistance(fiapLocation, 1200, 1200)
+        let baseLocation:CLLocationCoordinate2D  = CLLocationCoordinate2DMake(-23.573804, -46.623441)
+        self.mapView.region = MKCoordinateRegionMakeWithDistance(baseLocation, 3600, 3600)
 
         /*
         let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/users")
@@ -87,36 +87,32 @@ class MapaViewController: UIViewController, MKMapViewDelegate{
     }
 
     func loadUsersOnMapView(json: AnyObject) {
-        do {
             if let users = json["users"] as? [[String: AnyObject]] {
                 for user in users {
 
-                    var u:User = User()
-                    u.uuid = (user["uuid"] as? String)!
-                    u.name = (user["name"] as? String)!
-                    u.email = (user["email"] as? String)!
-                    u.cellphone = (user["cellphone"] as? String)!
-                    u.picture = (user["picture"] as? String)!
-                    u.description = (user["description"] as? String)!
-                    u.location = (user["location"] as? String)!
-                    u.rating = (user["rating"] as? String)!
-                    u.profile = (user["profile"] as? String)!
-                    u.status = (user["status"] as? String)!
+                var u:User = User()
+                u.uuid = (user["uuid"] as? String)!
+                u.name = (user["name"] as? String)!
+                u.email = (user["email"] as? String)!
+                u.cellphone = (user["cellphone"] as? String)!
+                u.picture = (user["picture"] as? String)!
+                u.description = (user["description"] as? String)!
+                u.location = (user["location"] as? String)!
+                u.rating = (user["rating"] as? String)!
+                u.profile = (user["profile"] as? String)!
+                u.status = (user["status"] as? String)!
 
-                    var locationArr = u.location.componentsSeparatedByString(",")
-                    let lat: Double! = Double(locationArr[0])
-                    let long: Double! = Double(locationArr[1])
+                var locationArr = u.location.componentsSeparatedByString(",")
+                let lat: Double! = Double(locationArr[0])
+                let long: Double! = Double(locationArr[1])
                     
-                    //print(lat!)
-                    //print(long!)
-                    
-                    let userAnnotation: UserAnnotation = UserAnnotation(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long), title: u.name, subtitle: u.status, image: u.picture, user: u)
+                //print(lat!)
+                //print(long!)
 
-                    self.mapView.addAnnotation(userAnnotation)
-                }
+                let userAnnotation: UserAnnotation = UserAnnotation(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long), title: u.profile + " - " +  u.name, subtitle: u.status, image: u.picture, user: u)
+
+                self.mapView.addAnnotation(userAnnotation)
             }
-        } catch {
-            print("Erro no parser JSON")
         }
     }
 
