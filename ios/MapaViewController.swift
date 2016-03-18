@@ -33,8 +33,8 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let longitude: Double = (location?.coordinate.longitude)!
         
         // Define minha localizacao e centraliza o mapa nela
-        let baseLocation:CLLocationCoordinate2D  = CLLocationCoordinate2DMake(latitude, longitude)
-        self.mapView.region = MKCoordinateRegionMakeWithDistance(baseLocation, 1200, 1200)
+       let baseLocation:CLLocationCoordinate2D  = CLLocationCoordinate2DMake(latitude, longitude)
+       self.mapView.region = MKCoordinateRegionMakeWithDistance(baseLocation, 1200, 1200)
 
         // Get a reference to our posts
         
@@ -79,9 +79,8 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         var user:User = User()
         user.uuid = "XPTO"
         
-        let userPoint:UserAnnotation! = UserAnnotation(coordinate: center, title: "Eu", subtitle: "Sua localização atual", image: "bluePin", user: user)
-
-        self.mapView.addAnnotation(userPoint)
+        //let userPoint:UserAnnotation! = UserAnnotation(coordinate: center, title: "Eu", subtitle: "Sua localização atual", image: "bluePin", user: user)
+        //self.mapView.addAnnotation(userPoint)
         
         // Stop updating location to save battery life
         locationManager.stopUpdatingLocation()
