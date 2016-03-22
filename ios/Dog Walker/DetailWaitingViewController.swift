@@ -10,9 +10,13 @@ import UIKit
 
 class DetailWaitingViewController: UIViewController {
 
+    var uid: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(uid)
+        
         // Do any additional setup after loading the view.
     }
 

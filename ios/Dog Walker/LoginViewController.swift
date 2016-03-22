@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet weak var tfPassword: UITextField!
+    
+    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/")
+    var uid: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +28,53 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func register(sender: UIButton) {
+        ref.createUser(tfEmail.text!, password: tfPassword.text!, withValueCompletionBlock: { error, result in
+            if (error == nil) {
+                self.login()
+            } else {
+                self.alert("Erro ao cadastrar usuário")
+            }
+        })
+    }
+    
+    @IBAction func login(sender: UIButton) {
+        login()
+    }
 
+    func login() {
+        ref.authUser(tfEmail.text!, password: tfPassword.text!) { (error, data) -> Void in
+            if (error == nil) {
+                self.uid = data.uid
+                self.performSegueWithIdentifier("loginToDetailWaitingSegue", sender: nil)
+            } else {
+                self.alert("Usuário ou senha inválido(s)")
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "loginToDetailWaitingSegue") {
+            let viewController: DetailWaitingViewController = segue.destinationViewController as! DetailWaitingViewController
+            viewController.uid = self.uid
+        }
+    }
+    
+    func alert(message: String) {
+        let alert = UIAlertController(title: "Atenção!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     /*
     // MARK: - Navigation
 
