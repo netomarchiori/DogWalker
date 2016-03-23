@@ -17,7 +17,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     let locationManager: CLLocationManager = CLLocationManager()
 
-    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com")
+    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +28,13 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         self.locationManager.delegate = self
         self.locationManager.startUpdatingLocation()
         
-        let location = self.locationManager.location
-        let latitude: Double = (location?.coordinate.latitude)!
-        let longitude: Double = (location?.coordinate.longitude)!
+        //let location = self.locationManager.location
+        //let latitude: Double = (location?.coordinate.latitude)!
+        //let longitude: Double = (location?.coordinate.longitude)!
         
         // Define minha localizacao e centraliza o mapa nela
-       let baseLocation:CLLocationCoordinate2D  = CLLocationCoordinate2DMake(latitude, longitude)
-       self.mapView.region = MKCoordinateRegionMakeWithDistance(baseLocation, 1200, 1200)
+        //let baseLocation:CLLocationCoordinate2D  = CLLocationCoordinate2DMake(latitude, longitude)
+        //self.mapView.region = MKCoordinateRegionMakeWithDistance(baseLocation, 1200, 1200)
 
         // Get a reference to our posts
         
@@ -101,7 +101,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
                 let userAnnotation: UserAnnotation = sender! as! UserAnnotation
 
-                schedulingViewController.user = userAnnotation.user!
+                schedulingViewController.walker = userAnnotation.user!
             }
         }
     }

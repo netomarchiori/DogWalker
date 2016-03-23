@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-class SchedulingViewController: UIViewController {
+class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
 
     
     @IBOutlet weak var imagemPasseador: UIImageView!
@@ -18,18 +19,21 @@ class SchedulingViewController: UIViewController {
     @IBOutlet weak var iconeStatusPasseador: UIView!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var timeTextField: UITextField!
+    @IBOutlet weak var duration: UITextField!
+    @IBOutlet weak var dogSize: UISegmentedControl!
     
     var session: NSURLSession?
     
-    var user:User = User()
+    var walker:User = User()
+    
+    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/schedulings")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        nomePasseador.text = user.name
-        statusPasseador.text = user.status
-        switch user.status{
+        nomePasseador.text = walker.name
+        statusPasseador.text = walker.status
+        switch walker.status{
         case "busy":
         iconeStatusPasseador.backgroundColor = UIColor.redColor()
         case "available":
@@ -41,11 +45,11 @@ class SchedulingViewController: UIViewController {
         
         self.setPickerToolbar()
         
-        if let checkedUrl = NSURL(string: user.picture) {
+        if let checkedUrl = NSURL(string: walker.picture) {
             downloadImage(checkedUrl)
         }
         
-        print("Opa, chegou nos detalhes... \(user.uuid) - \(user.name)")
+        print("Opa, chegou nos detalhes... \(walker.uuid) - \(walker.name)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -157,6 +161,49 @@ class SchedulingViewController: UIViewController {
                 self.loadingIndicator.stopAnimating()
             }
         }
+    }
+    
+    @IBAction func btnConfirm(sender: UIButton) {
+        if (CurrentUser.uid == "") {
+            performSegueWithIdentifier("schedulingToLoginSegue", sender: sender)
+        } else {
+            performSegueWithIdentifier("schedulingToDetailSegue", sender: sender)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "schedulingToLoginSegue") {
+            let vc: LoginViewController = segue.destinationViewController as! LoginViewController
+            vc.delegate = self
+        } else if (segue.identifier == "schedulingToDetailSegue") {
+            let vc: DetailWaitingViewController = segue.destinationViewController as! DetailWaitingViewController
+            vc.schedulingId = "-KDVtYKunWpF4InQMc3g"
+        }
+    }
+    
+    func loginViewDismissed() {
+        insertSchedule()
+        self.performSegueWithIdentifier("schedulingToDetailSegue", sender: nil)
+    }
+    
+    func insertSchedule() {
+        
+        var dogSizeString: String = ""
+        switch (dogSize.selectedSegmentIndex) {
+        case 0:
+            dogSizeString = "Pequeno"
+        case 1:
+            dogSizeString = "Médio"
+        case 2:
+            dogSizeString = "Grande"
+        default:
+            break
+        }
+        
+        //data e hora do pedido
+        
+        let schedule = ["uid": CurrentUser.uid, "walkerid": walker.uuid, "date": dateTextField.text!, "time": timeTextField.text!, "duration": duration.text!, "dog_size": dogSizeString, "status": "Pending", "request_date": "data/hora do pedido"]
+        ref.childByAutoId().setValue(schedule)
     }
 }
 

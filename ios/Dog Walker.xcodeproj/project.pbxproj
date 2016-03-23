@@ -28,6 +28,7 @@
 		AC85258C1C98E6FB002C8E79 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC85258B1C98E6FB002C8E79 /* SystemConfiguration.framework */; };
 		AC85258E1C98E753002C8E79 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC85258D1C98E753002C8E79 /* libicucore.tbd */; };
 		AC8525901C98E75E002C8E79 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC85258F1C98E75E002C8E79 /* libc++.tbd */; };
+		ACFDFAB71CA2092600DAED06 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFDFAB61CA2092600DAED06 /* CurrentUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		AC85258B1C98E6FB002C8E79 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AC85258D1C98E753002C8E79 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		AC85258F1C98E75E002C8E79 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		ACFDFAB61CA2092600DAED06 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUser.swift; path = ../CurrentUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				AC3BF86B1C98C78F00CB6983 /* AppDelegate.swift */,
+				ACFDFAB61CA2092600DAED06 /* CurrentUser.swift */,
 				AC3BF8991C98CB7C00CB6983 /* MapaViewController.swift */,
 				AC3BF89B1C98CC3D00CB6983 /* SchedulingViewController.swift */,
 				AC3BF89D1C98D45B00CB6983 /* LoginViewController.swift */,
@@ -319,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACFDFAB71CA2092600DAED06 /* CurrentUser.swift in Sources */,
 				AC3BF89E1C98D45B00CB6983 /* LoginViewController.swift in Sources */,
 				AC8525831C98E1F1002C8E79 /* DetailWaitingViewController.swift in Sources */,
 				AC3BF86C1C98C78F00CB6983 /* AppDelegate.swift in Sources */,

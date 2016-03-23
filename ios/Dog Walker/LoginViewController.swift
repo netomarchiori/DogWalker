@@ -9,10 +9,16 @@
 import UIKit
 import Firebase
 
+protocol LoginViewControllerDelegate: class {
+    func loginViewDismissed()
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
+    
+    weak var delegate: LoginViewControllerDelegate?
     
     let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/")
     var uid: String = ""
@@ -45,8 +51,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func login() {
         ref.authUser(tfEmail.text!, password: tfPassword.text!) { (error, data) -> Void in
             if (error == nil) {
+                CurrentUser.uid = data.uid
                 self.uid = data.uid
-                self.performSegueWithIdentifier("loginToDetailWaitingSegue", sender: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
+                self.delegate?.loginViewDismissed()
+                //self.performSegueWithIdentifier("loginToDetailWaitingSegue", sender: nil)
             } else {
                 self.alert("Usuário ou senha inválido(s)")
             }
@@ -74,6 +83,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    
     
     /*
     // MARK: - Navigation
