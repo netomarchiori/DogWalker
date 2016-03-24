@@ -68,9 +68,10 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("didUpdateLocations disparado")
         let location = locations.last! as CLLocation
-        
+
         let center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        region.span
         
         self.mapView.setRegion(region, animated: true)
         
@@ -97,9 +98,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "segueAgendamento") {
             if let schedulingViewController = segue.destinationViewController as? SchedulingViewController {
-
                 let userAnnotation: UserAnnotation = sender! as! UserAnnotation
-
                 schedulingViewController.walker = userAnnotation.user!
             }
         }
@@ -133,6 +132,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 u.uuid = (user["uuid"] as? String)!
                 u.name = (user["name"] as? String)!
                 u.email = (user["email"] as? String)!
+                u.gender = (user["gender"] as? String)!
                 u.cellphone = (user["cellphone"] as? String)!
                 u.picture = (user["picture"] as? String)!
                 u.description = (user["description"] as? String)!
@@ -163,10 +163,10 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             imgName = "bluePin" // Passeador disponivel no momento
             print("Passeador disponivel. Imagem: \(imgName)")
         case "busy":
-            imgName =  "bluePin" // Passeador em passeio no momento
+            imgName = "bluePin" // Passeador em passeio no momento
             print("Passeador em passeio. Imagem: \(imgName)")
         case "offline":
-            imgName =  "redPin" // Passeador offline, mas um agendamento pode ser realizado para que ele aceite ou nao
+            imgName = "redPin" // Passeador offline, mas um agendamento pode ser realizado para que ele aceite ou nao
             print("Passeador em passeio. Imagem: \(imgName)")
         default:
             imgName = "userLogo" // Pensar em alguma imagem default
@@ -187,14 +187,13 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         case "available":
             statusPtBr = "Disponível no momento"
         case "busy":
-            statusPtBr =  "Em passeio"
+            statusPtBr = "Em passeio"
         case "offline":
-            statusPtBr =  "Não disponível"
+            statusPtBr = "Não disponível"
         default:
             statusPtBr = "Opz!"
         }
         
         return statusPtBr
-
     }
 }

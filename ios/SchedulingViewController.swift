@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
-
     
     @IBOutlet weak var imagemPasseador: UIImageView!
     @IBOutlet weak var nomePasseador: UILabel!
@@ -31,8 +30,8 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nomePasseador.text = walker.name
-        statusPasseador.text = walker.status
+        nomePasseador.text = getGender(walker.gender) + " - " + walker.name
+        statusPasseador.text = getStatus(walker.status)
         switch walker.status{
         case "busy":
         iconeStatusPasseador.backgroundColor = UIColor.redColor()
@@ -67,15 +66,14 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
     }
     */
     
-    
     @IBAction func dataFieldEditing(sender: UITextField) {
         let datePickerView:UIDatePicker = UIDatePicker()
         
-        if(sender.tag == 0){
+        if (sender.tag == 0) {
             //data Tag 0
             datePickerView.datePickerMode = UIDatePickerMode.Date
             datePickerView.tag = 0
-        }else{
+        } else {
             //hora Tag 1
             datePickerView.datePickerMode = UIDatePickerMode.Time
             datePickerView.tag = 1
@@ -86,15 +84,15 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
     
     func datePickerValueChanged(sender:UIDatePicker) {
         let dateFormatter = NSDateFormatter()
-        if(sender.tag == 0){
+        if (sender.tag == 0) {
             dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
             dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
             dateTextField.text = dateFormatter.stringFromDate(sender.date)
-        }else{
+        } else {
             dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
             dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
             timeTextField.text = dateFormatter.stringFromDate(sender.date)
-            }
+        }
     }
     
     func setPickerToolbar(){
@@ -111,7 +109,7 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
         label.font = UIFont(name: "Helvetica", size: 12)
         label.backgroundColor = UIColor.clearColor()
         label.textColor = UIColor.whiteColor()
-        label.text = "Select a due date"
+        label.text = "Selecione a data"
         label.textAlignment = NSTextAlignment.Center
         let textBtn = UIBarButtonItem(customView: label)
         
@@ -128,7 +126,6 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
         //timeTextField.inputAccessoryView = toolBar2
     }
     
-    
     func donePressed(sender: UIBarButtonItem) {
         dateTextField.resignFirstResponder()
         timeTextField.resignFirstResponder()
@@ -142,8 +139,6 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
         dateTextField.text = dateformatter.stringFromDate(NSDate())
         dateTextField.resignFirstResponder()
     }
-    
-    
     
     func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
         NSURLSession.sharedSession().dataTaskWithURL(url) {
@@ -204,6 +199,40 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
         
         let schedule = ["uid": CurrentUser.uid, "walkerid": walker.uuid, "date": dateTextField.text!, "time": timeTextField.text!, "duration": duration.text!, "dog_size": dogSizeString, "status": "Pending", "request_date": "data/hora do pedido"]
         ref.childByAutoId().setValue(schedule)
+    }
+
+    /*
+    * Metodo para trazer o status em portugues.
+    * Pode ser evoluido para fazer internacionalizacao, talvez.
+    */
+    func getStatus(status: String) -> String {
+        var statusPtBr = ""
+        
+        switch status {
+        case "available":
+            statusPtBr = "Disponível no momento"
+        case "busy":
+            statusPtBr = "Em passeio"
+        case "offline":
+            statusPtBr = "Não disponível"
+        default:
+            statusPtBr = "Opz!"
+        }
+        return statusPtBr
+    }
+
+    func getGender(gender: String) -> String {
+        var genderPtBr = ""
+        
+        switch gender {
+        case "male":
+            genderPtBr = "Passeador"
+        case "female":
+            genderPtBr = "Passeadora"
+        default:
+            genderPtBr = "Opz!"
+        }
+        return genderPtBr
     }
 }
 

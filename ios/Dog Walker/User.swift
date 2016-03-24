@@ -14,6 +14,7 @@ struct User {
     var cellphone = ""
     var description = ""
     var email = ""
+    var gender = ""
     var location = ""
     var name = ""
     var picture = ""
