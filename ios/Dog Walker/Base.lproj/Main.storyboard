@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Passeadores ao Redor-->
+        <!--Passeadores ao redor-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapaViewController" customModule="Dog_Walker" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2dC-9y-uFB">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2dC-9y-uFB">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="fNj-B2-t6w"/>
@@ -33,7 +33,9 @@
                             <constraint firstAttribute="trailing" secondItem="2dC-9y-uFB" secondAttribute="trailing" id="hno-SG-b6x"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Passeadores ao Redor" prompt="Escolha um e agende o passeio" id="KIY-hq-gNI"/>
+                    <navigationItem key="navigationItem" title="Passeadores ao redor" id="KIY-hq-gNI">
+                        <barButtonItem key="backBarButtonItem" title="Voltar" id="Hb7-P6-J0o"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="2dC-9y-uFB" id="PK7-Hb-4zg"/>
                         <segue destination="WPO-Nq-j47" kind="show" identifier="segueAgendamento" id="r5U-E6-di4"/>
@@ -43,10 +45,10 @@
             </objects>
             <point key="canvasLocation" x="2118" y="452"/>
         </scene>
-        <!--Scheduling View Controller-->
+        <!--Agendamento-->
         <scene sceneID="Tb9-3C-C4f">
             <objects>
-                <viewController id="WPO-Nq-j47" customClass="SchedulingViewController" customModule="Dog_Walker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Agendamento" id="WPO-Nq-j47" customClass="SchedulingViewController" customModule="Dog_Walker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Dg-JH-wjW"/>
                         <viewControllerLayoutGuide type="bottom" id="MOg-bf-iwd"/>
@@ -55,7 +57,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7lU-db-9tD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7lU-db-9tD">
                                 <rect key="frame" x="10" y="74" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Ekq-1g-CdC"/>
@@ -68,7 +70,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVy-nc-kaW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVy-nc-kaW">
                                 <rect key="frame" x="106" y="107" width="474" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -82,11 +84,11 @@
                                     <constraint firstAttribute="height" constant="20" id="uY6-Z6-BLW"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="SZm-yp-85N">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="SZm-yp-85N">
                                 <rect key="frame" x="21" y="85" width="37" height="37"/>
                                 <color key="color" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9L-F4-hfD">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9L-F4-hfD">
                                 <rect key="frame" x="0.0" y="149" width="600" height="402"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="52e-RN-E3r">
