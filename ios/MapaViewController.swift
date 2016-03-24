@@ -13,7 +13,6 @@ import Firebase
 class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var btnDebug: UIButton!
     
     let locationManager: CLLocationManager = CLLocationManager()
 
@@ -40,7 +39,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         // Attach a closure to read the data at our posts reference
         self.ref.observeEventType(.Value, withBlock: { snapshot in
-            //print(snapshot.value)®
+            //print(snapshot.value)
 
             // Adiciona users no mapa
             self.loadUsersOnMapView(snapshot.value!)
@@ -147,9 +146,9 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 let long: Double! = Double(locationArr[1])
                 
                 let imgName:String = getImageNameByStatus(u.status)
-                //print(imgName)
+                let status:String = getStatus(u.status)
 
-                let userAnnotation: UserAnnotation = UserAnnotation(coordinate: CLLocationCoordinate2DMake(lat, long), title: u.name, subtitle: u.profile + " - " +  u.status, image: imgName, user: u)
+                let userAnnotation: UserAnnotation = UserAnnotation(coordinate: CLLocationCoordinate2DMake(lat, long), title: u.name, subtitle: status, image: imgName, user: u)
                 
                 self.mapView.addAnnotation(userAnnotation)
             }
@@ -161,16 +160,41 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
         switch status {
         case "available":
-            imgName = "bluePin"
+            imgName = "bluePin" // Passeador disponivel no momento
             print("Passeador disponivel. Imagem: \(imgName)")
         case "busy":
-            imgName =  "redPin"//"dogWalker"
+            imgName =  "bluePin" // Passeador em passeio no momento
+            print("Passeador em passeio. Imagem: \(imgName)")
+        case "offline":
+            imgName =  "redPin" // Passeador offline, mas um agendamento pode ser realizado para que ele aceite ou nao
             print("Passeador em passeio. Imagem: \(imgName)")
         default:
-            imgName = "userLogo"
+            imgName = "userLogo" // Pensar em alguma imagem default
             print("Usuario com o perfil nao tratado.")
         }
 
         return imgName
+    }
+
+    /*
+     * Metodo para trazer o status em portugues.
+     * Pode ser evoluido para fazer internacionalizacao, talvez.
+     */
+    func getStatus(status: String) -> String {
+        var statusPtBr = ""
+
+        switch status {
+        case "available":
+            statusPtBr = "Disponível no momento"
+        case "busy":
+            statusPtBr =  "Em passeio"
+        case "offline":
+            statusPtBr =  "Não disponível"
+        default:
+            statusPtBr = "Opz!"
+        }
+        
+        return statusPtBr
+
     }
 }
