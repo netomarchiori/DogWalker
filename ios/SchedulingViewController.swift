@@ -48,7 +48,7 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
             downloadImage(checkedUrl)
         }
         
-        print("Opa, chegou nos detalhes... \(walker.uuid) - \(walker.name)")
+        print("Opa, chegou nos detalhes... \(walker.id) - \(walker.name)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -197,7 +197,7 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
         
         //data e hora do pedido
         
-        let schedule = ["uid": CurrentUser.uid, "walkerid": walker.uuid, "date": dateTextField.text!, "time": timeTextField.text!, "duration": duration.text!, "dog_size": dogSizeString, "status": "Pending", "request_date": "data/hora do pedido"]
+        let schedule = ["uid": CurrentUser.uid, "walkerid": walker.id, "date": dateTextField.text!, "time": timeTextField.text!, "duration": duration.text!, "dog_size": dogSizeString, "status": "Pending", "request_date": "data/hora do pedido"]
         ref.childByAutoId().setValue(schedule)
     }
 

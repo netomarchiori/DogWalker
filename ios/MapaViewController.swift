@@ -16,7 +16,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     let locationManager: CLLocationManager = CLLocationManager()
 
-    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/")
+    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/users")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,6 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             }, withCancelBlock: { error in
                 print(error.description)
         })
-
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -77,7 +76,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         // @TODO: buscar usuario atual logado...
         var user:User = User()
-        user.uuid = "XPTO"
+        user.id = "XPTO"
         
         //let userPoint:UserAnnotation! = UserAnnotation(coordinate: center, title: "Eu", subtitle: "Sua localização atual", image: "bluePin", user: user)
         //self.mapView.addAnnotation(userPoint)
@@ -123,34 +122,39 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
 
     // metodos de negocio
-    
-    func loadUsersOnMapView(json: AnyObject) {
-        if let users = json["users"] as? [[String: AnyObject]] {
-            for user in users {
-                
-                var u:User = User()
-                u.uuid = (user["uuid"] as? String)!
-                u.name = (user["name"] as? String)!
-                u.email = (user["email"] as? String)!
-                u.gender = (user["gender"] as? String)!
-                u.cellphone = (user["cellphone"] as? String)!
-                u.picture = (user["picture"] as? String)!
-                u.description = (user["description"] as? String)!
-                u.location = (user["location"] as? String)!
-                u.rating = (user["rating"] as? String)!
-                u.profile = (user["profile"] as? String)!
-                u.status = (user["status"] as? String)!
-                
-                var locationArr = u.location.componentsSeparatedByString(",")
-                let lat: Double! = Double(locationArr[0])
-                let long: Double! = Double(locationArr[1])
-                
-                let imgName:String = getImageNameByStatus(u.status)
-                let status:String = getStatus(u.status)
 
-                let userAnnotation: UserAnnotation = UserAnnotation(coordinate: CLLocationCoordinate2DMake(lat, long), title: u.name, subtitle: status, image: imgName, user: u)
+    func loadUsersOnMapView(data: AnyObject) {
+        if let json = data as? [String: AnyObject] {
+            print("1");
+            for list in json {
+                let id:String = list.0;
                 
-                self.mapView.addAnnotation(userAnnotation)
+                if let user = list.1 as? [String: AnyObject] {
+                    var u:User = User()
+                    u.id = (id);
+                    
+                    u.name = (user["name"] as? String)!
+                    u.email = (user["email"] as? String)!
+                    u.gender = (user["gender"] as? String)!
+                    u.cellphone = (user["cellphone"] as? String)!
+                    u.picture = (user["picture"] as? String)!
+                    u.description = (user["description"] as? String)!
+                    u.location = (user["location"] as? String)!
+                    u.rating = (user["rating"] as? String)!
+                    u.profile = (user["profile"] as? String)!
+                    u.status = (user["status"] as? String)!
+                    
+                    var locationArr = u.location.componentsSeparatedByString(",")
+                    let lat: Double! = Double(locationArr[0])
+                    let long: Double! = Double(locationArr[1])
+                    
+                    let imgName:String = getImageNameByStatus(u.status)
+                    let status:String = getStatus(u.status)
+                    
+                    let userAnnotation: UserAnnotation = UserAnnotation(coordinate: CLLocationCoordinate2DMake(lat, long), title: u.name, subtitle: status, image: imgName, user: u)
+                    
+                    self.mapView.addAnnotation(userAnnotation)
+                }
             }
         }
     }

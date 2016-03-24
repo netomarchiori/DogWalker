@@ -10,7 +10,7 @@ import UIKit
 
 struct User {
 
-    var uuid = ""
+    var id = ""
     var cellphone = ""
     var description = ""
     var email = ""
