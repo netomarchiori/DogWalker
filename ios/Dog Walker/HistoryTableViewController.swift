@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class HistoryTableViewController: UITableViewController {
 
+    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/schedulings")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +21,21 @@ class HistoryTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+        // Attach a closure to read the data at our posts reference
+        self.ref.observeEventType(.Value, withBlock: { snapshot in
+            //print(snapshot.value)
+            
+            // Adiciona users no mapa
+            print(snapshot.value!)
+            //self.loadSchedulings(snapshot.value!)
+            
+            // let title = snapshot.value.objectForKey("full_name") as? String
+            // self.btnDebug.setTitle(title, forState: .Normal)
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
     }
 
     override func didReceiveMemoryWarning() {
