@@ -560,7 +560,7 @@
                             <outlet property="delegate" destination="9P6-aQ-a94" id="h8u-LD-p4h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Agendamentos" id="ps9-b5-p9e"/>
+                    <navigationItem key="navigationItem" title="Passeios" id="ps9-b5-p9e"/>
                     <connections>
                         <segue destination="r20-J2-Ua7" kind="show" id="mlB-S9-2UA"/>
                     </connections>
@@ -573,7 +573,7 @@
         <scene sceneID="9bB-qi-IbJ">
             <objects>
                 <navigationController title="Agendamentos" automaticallyAdjustsScrollViewInsets="NO" id="5UD-04-chH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Agendamentos" image="list-simple-7" selectedImage="list-simple-7" id="TgJ-e8-sOj"/>
+                    <tabBarItem key="tabBarItem" title="Passeios" image="list-simple-7" selectedImage="list-simple-7" id="TgJ-e8-sOj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DcS-rc-3Zm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
