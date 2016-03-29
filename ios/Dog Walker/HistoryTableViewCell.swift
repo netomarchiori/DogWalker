@@ -14,4 +14,6 @@ class HistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var hour: UILabel!
     @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var data: UILabel!
+    @IBOutlet weak var duration: UILabel!
 }

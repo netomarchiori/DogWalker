@@ -74,15 +74,12 @@ class HistoryTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellID", forIndexPath: indexPath) as! HistoryTableViewCell
 
-        print("debug: \(self.schedulings.count)")
-        let content:String = self.schedulings[indexPath.row].status
-        print("conteudo: \(content)")
-        
-        //cell.textLabel?.text = content
-        cell.status.text = "Status: " + self.schedulings[indexPath.row].status
-        cell.hour.text = self.schedulings[indexPath.row].date
-        cell.nameWaker.text = self.schedulings[indexPath.row].status
+        cell.nameWaker.text = "Status: " + getStatus(self.schedulings[indexPath.row].status)
+        cell.data.text = "Data: " + self.schedulings[indexPath.row].date
+        //cell.status.text = "Status: " + self.schedulings[indexPath.row].status
+        cell.duration.text = "Duração: " + self.schedulings[indexPath.row].duration + " minutos"
         // outros dados...
+        cell.accessoryType = UITableViewCellAccessoryType.DetailButton
 
         return cell
     }
