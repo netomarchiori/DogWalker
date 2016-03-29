@@ -54,7 +54,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     override func viewDidDisappear(animated: Bool) {
         let handle = ref.observeEventType(.Value, withBlock: { snapshot in
-            print("Snapshot value: \(snapshot.value)")
+            //print("Snapshot value: \(snapshot.value)")
         })
         ref.removeObserverWithHandle(handle)
     }
@@ -65,7 +65,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("didUpdateLocations disparado")
+        //print("didUpdateLocations disparado")
         let location = locations.last! as CLLocation
 
         let center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
@@ -104,7 +104,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        print("viewForAnnotation disparado")
+        //print("viewForAnnotation disparado")
         if annotation is UserAnnotation {
             let reuseId = "reuseUserAnnotation"
             var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
@@ -125,7 +125,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
     func loadUsersOnMapView(data: AnyObject) {
         if let json = data as? [String: AnyObject] {
-            print("1");
+            //print("1");
             for list in json {
                 let id:String = list.0;
                 
@@ -165,16 +165,16 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         switch status {
         case "available":
             imgName = "bluePin" // Passeador disponivel no momento
-            print("Passeador disponivel. Imagem: \(imgName)")
+            //print("Passeador disponivel. Imagem: \(imgName)")
         case "busy":
             imgName = "bluePin" // Passeador em passeio no momento
-            print("Passeador em passeio. Imagem: \(imgName)")
+            //print("Passeador em passeio. Imagem: \(imgName)")
         case "offline":
             imgName = "redPin" // Passeador offline, mas um agendamento pode ser realizado para que ele aceite ou nao
-            print("Passeador em passeio. Imagem: \(imgName)")
+            //print("Passeador em passeio. Imagem: \(imgName)")
         default:
             imgName = "userLogo" // Pensar em alguma imagem default
-            print("Usuario com o perfil nao tratado.")
+            //print("Usuario com o perfil nao tratado.")
         }
 
         return imgName

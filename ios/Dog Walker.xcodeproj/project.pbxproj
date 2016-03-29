@@ -10,6 +10,8 @@
 		0386D4871C99159B0052B643 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386D4861C99159B0052B643 /* User.swift */; };
 		0386D48D1C991F8D0052B643 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386D48C1C991F8D0052B643 /* UserAnnotation.swift */; };
 		03A519C61CA4369900A39661 /* dogWalker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 03A519C51CA4369900A39661 /* dogWalker.jpg */; };
+		03CB3E2F1CAA0FC0007B542E /* Scheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB3E2E1CAA0FC0007B542E /* Scheduling.swift */; };
+		03CB3E311CAA2587007B542E /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB3E301CAA2587007B542E /* HistoryTableViewCell.swift */; };
 		AC3BF86C1C98C78F00CB6983 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF86B1C98C78F00CB6983 /* AppDelegate.swift */; };
 		AC3BF8711C98C78F00CB6983 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC3BF86F1C98C78F00CB6983 /* Main.storyboard */; };
 		AC3BF8731C98C78F00CB6983 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC3BF8721C98C78F00CB6983 /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		0386D4861C99159B0052B643 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0386D48C1C991F8D0052B643 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		03A519C51CA4369900A39661 /* dogWalker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dogWalker.jpg; sourceTree = "<group>"; };
+		03CB3E2E1CAA0FC0007B542E /* Scheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduling.swift; sourceTree = "<group>"; };
+		03CB3E301CAA2587007B542E /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		AC3BF8681C98C78F00CB6983 /* Dog Walker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dog Walker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3BF86B1C98C78F00CB6983 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC3BF8701C98C78F00CB6983 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -144,9 +148,11 @@
 				AC3BF89B1C98CC3D00CB6983 /* SchedulingViewController.swift */,
 				AC3BF89D1C98D45B00CB6983 /* LoginViewController.swift */,
 				AC85257E1C98DF05002C8E79 /* HistoryTableViewController.swift */,
+				03CB3E301CAA2587007B542E /* HistoryTableViewCell.swift */,
 				AC8525821C98E1F1002C8E79 /* DetailWaitingViewController.swift */,
 				AC8525801C98E0BB002C8E79 /* DetailViewController.swift */,
 				0386D4861C99159B0052B643 /* User.swift */,
+				03CB3E2E1CAA0FC0007B542E /* Scheduling.swift */,
 				0386D48C1C991F8D0052B643 /* UserAnnotation.swift */,
 				03A519C51CA4369900A39661 /* dogWalker.jpg */,
 				AC3BF86F1C98C78F00CB6983 /* Main.storyboard */,
@@ -332,8 +338,10 @@
 				AC3BF86C1C98C78F00CB6983 /* AppDelegate.swift in Sources */,
 				0386D48D1C991F8D0052B643 /* UserAnnotation.swift in Sources */,
 				AC3BF89C1C98CC3D00CB6983 /* SchedulingViewController.swift in Sources */,
+				03CB3E311CAA2587007B542E /* HistoryTableViewCell.swift in Sources */,
 				0386D4871C99159B0052B643 /* User.swift in Sources */,
 				AC8525811C98E0BB002C8E79 /* DetailViewController.swift in Sources */,
+				03CB3E2F1CAA0FC0007B542E /* Scheduling.swift in Sources */,
 				AC3BF89A1C98CB7C00CB6983 /* MapaViewController.swift in Sources */,
 				AC85257F1C98DF05002C8E79 /* HistoryTableViewController.swift in Sources */,
 			);

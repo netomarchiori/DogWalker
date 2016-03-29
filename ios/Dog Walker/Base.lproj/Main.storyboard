@@ -506,7 +506,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="106" id="ymB-ZU-CNe">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellID" rowHeight="106" id="ymB-ZU-CNe" customClass="HistoryTableViewCell" customModule="Dog_Walker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="106"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ymB-ZU-CNe" id="SYg-i5-AgC">
@@ -522,7 +522,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data do Passeio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gub-gr-gV5">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gub-gr-gV5">
                                             <rect key="frame" x="119" y="44" width="123" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -548,6 +548,13 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="date" destination="yPq-AG-eIO" id="6ch-cl-C4f"/>
+                                    <outlet property="hour" destination="yPq-AG-eIO" id="b1b-of-LUq"/>
+                                    <outlet property="imgWalker" destination="vRx-iI-jLk" id="SdM-DE-LVU"/>
+                                    <outlet property="nameWaker" destination="a9I-ct-fgB" id="BC9-Fk-20s"/>
+                                    <outlet property="status" destination="IBL-u6-uBe" id="P3j-8j-Z93"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -599,6 +606,6 @@
         <image name="dogWalker" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r05-1C-v1t"/>
+        <segue reference="mlB-S9-2UA"/>
     </inferredMetricsTieBreakers>
 </document>
