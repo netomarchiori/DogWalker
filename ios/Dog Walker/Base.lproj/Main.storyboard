@@ -497,10 +497,10 @@
             </objects>
             <point key="canvasLocation" x="1302" y="452"/>
         </scene>
-        <!--History Table View Controller-->
+        <!--Agendamentos-->
         <scene sceneID="JEM-an-pPQ">
             <objects>
-                <tableViewController id="9P6-aQ-a94" customClass="HistoryTableViewController" customModule="Dog_Walker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Agendamentos" id="9P6-aQ-a94" customClass="HistoryTableViewController" customModule="Dog_Walker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="28" sectionFooterHeight="28" id="gCh-9v-POi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -560,18 +560,7 @@
                             <outlet property="delegate" destination="9P6-aQ-a94" id="h8u-LD-p4h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ps9-b5-p9e">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="lm8-a5-pWh">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OZu-4f-8KC">
-                                <rect key="frame" x="447" y="7" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Debug"/>
-                                <connections>
-                                    <segue destination="QwC-OY-pH2" kind="show" id="x5s-hp-MbX"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Agendamentos" id="ps9-b5-p9e"/>
                     <connections>
                         <segue destination="r20-J2-Ua7" kind="show" id="mlB-S9-2UA"/>
                     </connections>
@@ -583,7 +572,7 @@
         <!--Agendamentos-->
         <scene sceneID="9bB-qi-IbJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5UD-04-chH" sceneMemberID="viewController">
+                <navigationController title="Agendamentos" automaticallyAdjustsScrollViewInsets="NO" id="5UD-04-chH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Agendamentos" image="list-simple-7" selectedImage="list-simple-7" id="TgJ-e8-sOj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DcS-rc-3Zm">
