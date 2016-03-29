@@ -478,11 +478,11 @@
             </objects>
             <point key="canvasLocation" x="425" y="742"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Passeadores-->
         <scene sceneID="Q29-HX-heF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YOa-RW-E8h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="Y4S-IG-gdK"/>
+                    <tabBarItem key="tabBarItem" title="Passeadores" image="animal-element-7" selectedImage="animal-element-7" id="Y4S-IG-gdK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LlL-C4-gwc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -513,35 +513,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="105"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRx-iI-jLk">
-                                            <rect key="frame" x="25" y="6" width="86" height="83"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome do Passeador" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9I-ct-fgB">
-                                            <rect key="frame" x="119" y="15" width="155" height="21"/>
+                                            <rect key="frame" x="20" y="15" width="155" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gub-gr-gV5">
-                                            <rect key="frame" x="119" y="44" width="123" height="21"/>
+                                            <rect key="frame" x="20" y="42" width="123" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Duração" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A9-0L-tw8">
-                                            <rect key="frame" x="119" y="68" width="123" height="21"/>
+                                            <rect key="frame" x="20" y="71" width="123" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horário do Passeio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPq-AG-eIO">
-                                            <rect key="frame" x="259" y="44" width="144" height="21"/>
+                                            <rect key="frame" x="228" y="42" width="144" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBL-u6-uBe">
-                                            <rect key="frame" x="496" y="37" width="50" height="21"/>
+                                            <rect key="frame" x="228" y="76" width="50" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -551,7 +548,6 @@
                                 <connections>
                                     <outlet property="date" destination="yPq-AG-eIO" id="6ch-cl-C4f"/>
                                     <outlet property="hour" destination="yPq-AG-eIO" id="b1b-of-LUq"/>
-                                    <outlet property="imgWalker" destination="vRx-iI-jLk" id="SdM-DE-LVU"/>
                                     <outlet property="nameWaker" destination="a9I-ct-fgB" id="BC9-Fk-20s"/>
                                     <outlet property="status" destination="IBL-u6-uBe" id="P3j-8j-Z93"/>
                                 </connections>
@@ -582,11 +578,11 @@
             </objects>
             <point key="canvasLocation" x="2094" y="1132"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Agendamentos-->
         <scene sceneID="9bB-qi-IbJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5UD-04-chH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="history" id="TgJ-e8-sOj"/>
+                    <tabBarItem key="tabBarItem" title="Agendamentos" image="list-simple-7" selectedImage="list-simple-7" id="TgJ-e8-sOj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DcS-rc-3Zm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -603,7 +599,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="animal-element-7" width="30" height="30"/>
         <image name="dogWalker" width="30" height="30"/>
+        <image name="list-simple-7" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mlB-S9-2UA"/>

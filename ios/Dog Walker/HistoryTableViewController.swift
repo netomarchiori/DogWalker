@@ -79,7 +79,6 @@ class HistoryTableViewController: UITableViewController {
         print("conteudo: \(content)")
         
         //cell.textLabel?.text = content
-        cell.imgWalker.image = UIImage(named: "dogWalker")
         cell.status.text = "Status: " + self.schedulings[indexPath.row].status
         cell.hour.text = self.schedulings[indexPath.row].date
         cell.nameWaker.text = self.schedulings[indexPath.row].status
