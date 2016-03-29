@@ -10,58 +10,72 @@ import UIKit
 import Firebase
 
 class HistoryTableViewController: UITableViewController {
-
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-
-    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/schedulings")
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+    let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/schedulings")
+    var userAuth:FAuthData?
     var schedulings: [Scheduling] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        // monitora se está logado
+        self.ref.observeAuthEventWithBlock { authData in
+            if authData != nil{
+                self.userAuth = authData
+                print(authData)
+                self.ref.queryOrderedByChild("uid").queryEqualToValue(self.userAuth?.uid).observeEventType(.Value, withBlock: { snapshot in
+                    //print(snapshot.value)
+                    
+                    // print(snapshot.value!)
+                    self.loadSchedulings(snapshot.value!)
+                    self.tableView.reloadData()
+                    
+                    // let title = snapshot.value.objectForKey("full_name") as? String
+                    // self.btnDebug.setTitle(title, forState: .Normal)
+                    
+                    }, withCancelBlock: { error in
+                        print("erro: \(error.description)")
+                })
 
+            }else{
+                print("nenhum usuario logado")
+                self.schedulings.removeAll()
+                self.doRefresh()
+            }
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-
+        
         // Attach a closure to read the data at our posts reference
-        self.ref.observeEventType(.Value, withBlock: { snapshot in
-            //print(snapshot.value)
-            
-            // print(snapshot.value!)
-            self.loadSchedulings(snapshot.value!)
-            self.tableView.reloadData()
-            
-            // let title = snapshot.value.objectForKey("full_name") as? String
-            // self.btnDebug.setTitle(title, forState: .Normal)
-            
-            }, withCancelBlock: { error in
-                print("erro: \(error.description)")
-        })
+ 
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: "doRefresh", forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl?.tintColor = UIColor.redColor()
     }
-
+    
     func doRefresh() {
         self.refreshControl?.endRefreshing()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
@@ -70,70 +84,72 @@ class HistoryTableViewController: UITableViewController {
         
         return total
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellID", forIndexPath: indexPath) as! HistoryTableViewCell
-
+        
         cell.nameWaker.text = "Status: " + getStatus(self.schedulings[indexPath.row].status)
         cell.data.text = "Data: " + self.schedulings[indexPath.row].date
         //cell.status.text = "Status: " + self.schedulings[indexPath.row].status
         cell.duration.text = "Duração: " + self.schedulings[indexPath.row].duration + " minutos"
         // outros dados...
         cell.accessoryType = UITableViewCellAccessoryType.DetailButton
-
+        
         return cell
     }
-
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    // Return false if you do not want the specified item to be editable.
+    return true
     }
     */
-
+    
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    if editingStyle == .Delete {
+    // Delete the row from the data source
+    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    } else if editingStyle == .Insert {
+    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
     }
     */
-
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
     }
     */
-
+    
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    // Return false if you do not want the item to be re-orderable.
+    return true
     }
     */
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
     func loadSchedulings(data: AnyObject) {
+         self.schedulings.removeAll()
         if let json = data as? [String: AnyObject] {
             print("1");
             for list in json {
                 let id:String = list.0;
+                
                 
                 if let scheduling = list.1 as? [String: AnyObject] {
                     var s:Scheduling = Scheduling()
@@ -161,7 +177,7 @@ class HistoryTableViewController: UITableViewController {
             }
         }
     }
-
+    
     func getStatus(status: String) -> String {
         var statusPtBr = ""
         
@@ -176,7 +192,7 @@ class HistoryTableViewController: UITableViewController {
         
         return statusPtBr
     }
-
+    
     func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
         NSURLSession.sharedSession().dataTaskWithURL(url) {
             (data, response, error) in

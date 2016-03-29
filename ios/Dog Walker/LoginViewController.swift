@@ -84,6 +84,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    @IBAction func voltar(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     
     
     /*

@@ -24,11 +24,29 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
     var session: NSURLSession?
     
     var walker:User = User()
+    var userAuth:FAuthData?
+    var schedulingId = ""
+    
     
     let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/schedulings")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // monitora se está logado
+        self.ref.observeAuthEventWithBlock { authData in
+            if authData != nil{
+                self.userAuth = authData
+                print(authData)
+            }else{
+            
+            print("nenhum usuario logado")
+            
+            }
+            
+            
+        }
+        
         
         nomePasseador.text = getGender(walker.gender) + " - " + walker.name
         statusPasseador.text = getStatus(walker.status)
@@ -159,9 +177,10 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
     }
     
     @IBAction func btnConfirm(sender: UIButton) {
-        if (CurrentUser.uid == "") {
+        if ((userAuth) == nil) {
             performSegueWithIdentifier("schedulingToLoginSegue", sender: sender)
         } else {
+            insertSchedule()
             performSegueWithIdentifier("schedulingToDetailSegue", sender: sender)
         }
     }
@@ -172,7 +191,7 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
             vc.delegate = self
         } else if (segue.identifier == "schedulingToDetailSegue") {
             let vc: DetailWaitingViewController = segue.destinationViewController as! DetailWaitingViewController
-            vc.schedulingId = "-KDVtYKunWpF4InQMc3g"
+            vc.schedulingId = self.schedulingId
         }
     }
     
@@ -197,8 +216,12 @@ class SchedulingViewController: UIViewController, LoginViewControllerDelegate {
         
         //data e hora do pedido
         
-        let schedule = ["uid": CurrentUser.uid, "walkerid": walker.id, "date": dateTextField.text!, "time": timeTextField.text!, "duration": duration.text!, "dog_size": dogSizeString, "status": "Pending", "request_date": "data/hora do pedido"]
-        ref.childByAutoId().setValue(schedule)
+        let schedule = ["uid": self.userAuth!.uid, "walkerid": walker.id, "date": dateTextField.text!, "time": timeTextField.text!, "duration": duration.text!, "dog_size": dogSizeString, "status": "Pending", "request_date": "data/hora do pedido"]
+            let autoId = ref.childByAutoId()
+            autoId.setValue(schedule)
+        
+            self.schedulingId = autoId.key
+    
     }
 
     /*

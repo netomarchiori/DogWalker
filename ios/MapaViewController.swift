@@ -15,12 +15,28 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager: CLLocationManager = CLLocationManager()
-
+    var userAuth:FAuthData?
     let ref = Firebase(url:"https://dog-walker-app.firebaseio.com/users")
+    
+    @IBOutlet weak var btnSair: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // monitora se está logado
+        self.ref.observeAuthEventWithBlock { authData in
+            if authData != nil{
+                self.userAuth = authData
+                print(authData)
+                self.btnSair.title = "Sair"
+
+            }else{
+                print("nenhum usuario logado")
+                self.btnSair.title = "Entrar"
+                
+            }
+        }
         
         self.locationManager.requestWhenInUseAuthorization()
         self.mapView.showsUserLocation = true
@@ -199,5 +215,23 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
         
         return statusPtBr
+    }
+    @IBAction func logout(sender: UIBarButtonItem) {
+        
+        if userAuth != nil {
+        
+        let alert: UIAlertController = UIAlertController(title: "Sair", message: "logout confirmado", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        self.ref.unauth()
+        self.userAuth = nil
+            
+        }else{
+            
+            performSegueWithIdentifier("mapToLoginSegue", sender: nil)
+        
+        }
+        
     }
 }
