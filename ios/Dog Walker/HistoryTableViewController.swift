@@ -178,14 +178,18 @@ class HistoryTableViewController: UITableViewController {
         }
     }
     
-    func getStatus(status: String) -> String {
+    func getStatus(var status: String) -> String {
         var statusPtBr = ""
-        
+        status = status.uppercaseString
         switch status {
-        case "Pending":
+        case "PENDING":
             statusPtBr = "Pendente"
-        case "Finished":
+        case "FINISHED":
             statusPtBr = "Finalizado"
+        case "OK":
+            statusPtBr = "Confirmado"
+        case "REJECTED":
+            statusPtBr = "Rejeitado"
         default:
             statusPtBr = "Opz!"
         }
